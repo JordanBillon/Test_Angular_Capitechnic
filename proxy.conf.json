@@ -1,0 +1,10 @@
+{
+  "/items": {
+    "target": "http://localhost/api-test",
+    "secure": false,
+    "changeOrigin": true,
+    "headers": {
+      "Origin": "http://localhost:4200"
+    }
+  }
+}

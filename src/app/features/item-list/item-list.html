@@ -1,0 +1,24 @@
+ <div class="container">
+  <h1>Liste des items</h1>
+
+  @if (loading) {
+    <p>Chargement...</p>
+  }
+
+  @if (error) {
+    <p class="error">{{ error }}</p>
+  }
+
+  @if (!loading && !error) {
+    <ul>
+      @for (item of items; track item.id) {
+        <li>
+          <a [routerLink]="['/items', item.id]">
+            <strong>{{ item.title }}</strong>
+          </a>
+        </li>
+      }
+    </ul>
+  }
+</div> 
+

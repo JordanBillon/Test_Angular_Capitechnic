@@ -1,0 +1,44 @@
+<div class="container">
+  <a routerLink="/">← Retour à la liste</a>
+
+  @if (loading) {
+    <p>Chargement...</p>
+  }
+
+  @if (error) {
+    <p class="error">{{ error }}</p>
+  }
+
+  @if (successMessage) {
+    <p class="success">{{ successMessage }}</p>
+  }
+
+  @if (item && !loading) {
+    <h1>{{ item.title }}</h1>
+    <p><strong>Description :</strong> {{ item.description }}</p>
+    <p><strong>Date :</strong> {{ item.date }}</p>
+
+    @if (item.titleHistory.length > 0) {
+      <section>
+        <h3>Historique des titres</h3>
+        <ul>
+          @for (old of item.titleHistory; track $index) {
+            <li>{{ old }}</li>
+          }
+        </ul>
+      </section>
+    }
+
+    <section class="edit-form">
+      <h3>Modifier le titre</h3>
+      <input
+        [(ngModel)]="newTitle"
+        placeholder="Nouveau titre"
+        [disabled]="saving"
+      />
+      <button (click)="updateTitle()" [disabled]="saving || !newTitle.trim()">
+        {{ saving ? 'Enregistrement...' : 'Enregistrer' }}
+      </button>
+    </section>
+  }
+</div>
